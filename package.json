@@ -5,6 +5,7 @@
   "main": "lib/application.js",
   "scripts": {
     "test": "jest",
+    "start":"nodemon demos/index.js",
     "test-cov": "jest --coverage --runInBand --forceExit",
     "lint": "eslint benchmarks lib test",
     "bench": "make -C benchmarks",
