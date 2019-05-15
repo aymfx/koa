@@ -1,16 +1,17 @@
 ## 源码的结构
- - application.js
- - context.js
- - request.js
- - response.js
+
+- application.js
+- context.js
+- request.js
+- response.js
 
 ## 入口文件
 
->   "main": "lib/application.js",
+> "main": "lib/application.js",
 
-# 先对application 的引入的包文件进行分析 ==>
+# 先对 application 的引入的包文件进行分析 ==>
 
-##  is-generator-function  判断是不是生成器的包
+## is-generator-function 判断是不是生成器的包
 
 ```js
 const isGeneratorFunction = require('is-generator-function'); // 判断是不是生成器的包
@@ -19,7 +20,7 @@ function s1() {}
 
 let s2 = null;
 
-function * s3() {
+function* s3() {
   yield 43;
   return Infinity;
 }
@@ -27,13 +28,13 @@ function * s3() {
 let s4 = s3();
 
 console.log(isGeneratorFunction(s1)); //false
-console.log(isGeneratorFunction(s2));//false
-console.log(isGeneratorFunction(s3));//true
+console.log(isGeneratorFunction(s2)); //false
+console.log(isGeneratorFunction(s3)); //true
 ```
 
-##  debug 用于调试  同时可以看到调栈消耗的时间
+## debug 用于调试 同时可以看到调栈消耗的时间
 
-``` js
+```js
 let debug = require('debug')('request');
 debug('1');
 function testTime(params) {
@@ -49,12 +50,11 @@ testTime();
 // debug('结束时间3');
 // debug('结束时间4');
 // debug('结束时间5');
-
 ```
 
-##  on-finished http请求结束 完成 或者报错的时候回调
+## on-finished http 请求结束 完成 或者报错的时候回调
 
-``` js
+```js
 const Koa = require('../');
 const app = new Koa();
 let onFinished = require('on-finished');
@@ -71,19 +71,41 @@ app.listen(3000, () => {
 });
 ```
 
-> const isJSON = require('koa-is-json');  //判断返回的数据是不是json  body
+> const isJSON = require('koa-is-json'); //判断返回的数据是不是 json body
 
-##  statuses 状态🐎
+## statuses 状态 🐎
 
 ```js
 const status = require('statuses');
 
-status(403) // => 403
-status('403') // => 403
-status('forbidden') // => 403
-status('Forbidden') // => 403
-status(306)
+status(403); // => 403
+status('403'); // => 403
+status('forbidden'); // => 403
+status('Forbidden'); // => 403
+status(306);
 ```
 
+## only
+
+```js
+var only = require('only');
+
+let obj = {
+  name: 'tobi',
+  last: 'holowaychuk',
+  email: 'tobi@learnboost.com',
+  _id: '12345'
+};
+
+var user = only(obj, 'name last email');
+
+console.log(user);
+/*{
+ name: 'tobi',
+ last: 'holowaychuk',
+ email: 'tobi@learnboost.com'
+}
+*/
+```
 
 
