@@ -9,6 +9,6 @@ app.use(async ctx => {
   });
 });
 
-app.listen(3000, () => {
+app.listen(3002, () => {
   console.log('监听好了');
 });
