@@ -130,10 +130,10 @@ class Application extends Emitter {
 
   constructor() {
     super(); // 继承父元素的方法
-    this.proxy = false; // 代理
+    this.proxy = false; // 当真正的代理头字段将被信任时
     this.middleware = []; // 存放中间件的数组
-    this.subdomainOffset = 2; // 子域名偏移设置
-    this.env = process.env.NODE_ENV || 'development'; // 读取环境变量
+    this.subdomainOffset = 2; // 子域名偏移设置 对于要忽略的 .subdomains 偏移[2]
+    this.env = process.env.NODE_ENV || 'development'; // 读取环境变量 默认是 NODE_ENV 或 "development"
     this.context = Object.create(context); // 实例化三个对象
     this.request = Object.create(request);
     this.response = Object.create(response);
@@ -340,8 +340,8 @@ class Application extends Emitter {
       throw new TypeError(util.format('non-error thrown: %j', err));
     } // 如果是错误对象 则直接抛出
 
-    if (404 == err.status || err.expose) return; // 如果是404 或者其他 这直接返回  expose 决定是否会返回错误详情给客户端，否则只展示状态对应的错误文案
-    if (this.silent) return; // 保持沉默？
+    if (404 == err.status || err.expose) return; // 当 err.status 是 404 或 err.expose 是 true 时默认错误处理程序也不会输出错误
+    if (this.silent) return; // 默认情况下，将所有错误输出到 stderr，除非 app.silent 为 true。
 
     const msg = err.stack || err.toString(); // string 类型的错误直接展示在控制台
     console.error();
