@@ -319,7 +319,7 @@ class Application extends Emitter {
     request.response = response;
     response.request = request;
     context.originalUrl = request.originalUrl = req.url; // 展示的一致的请求url
-    context.state = {};
+    context.state = {}; // 推荐的命名空间，用于通过中间件传递信息和你的前端视图。
     return context;
   }
 
