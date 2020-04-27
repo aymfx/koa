@@ -5,7 +5,7 @@ const request = require('supertest');
 const assert = require('assert');
 const Koa = require('../..');
 
-describe('app.request', () => {
+describe('app.request', () => { // 两个实例的reuqest完成
   const app1 = new Koa();
   app1.request.message = 'hello';
   const app2 = new Koa();
@@ -23,7 +23,7 @@ describe('app.request', () => {
 
   it('should not affect the original prototype', () => {
     app2.use((ctx, next) => {
-      assert.equal(ctx.request.message, undefined);
+      assert.equal(ctx.request.message, undefined); // 期待
       ctx.status = 204;
     });
 

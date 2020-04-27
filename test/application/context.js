@@ -5,7 +5,7 @@ const request = require('supertest');
 const assert = require('assert');
 const Koa = require('../..');
 
-describe('app.context', () => {
+describe('app.context', () => { // 两个实例不会互相影响
   const app1 = new Koa();
   app1.context.msg = 'hello';
   const app2 = new Koa();

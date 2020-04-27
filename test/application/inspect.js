@@ -6,7 +6,7 @@ const util = require('util');
 const Koa = require('../..');
 const app = new Koa();
 
-describe('app.inspect()', () => {
+describe('app.inspect()', () => { // 只展示三个
   it('should work', () => {
     const str = util.inspect(app);
     assert.equal("{ subdomainOffset: 2, proxy: false, env: 'test' }", str);

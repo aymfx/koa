@@ -2,7 +2,7 @@
   "name": "koa",
   "version": "2.11.0",
   "description": "Koa web app framework",
-  "main": "lib/application.js",
+  "main": "demos/index.js",
   "scripts": {
     "test": "egg-bin test test",
     "test-cov": "egg-bin cov test",
